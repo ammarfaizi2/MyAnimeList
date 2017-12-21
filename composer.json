@@ -9,7 +9,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "ammarfaizi2/php-curl": "^0.0.2"
+    },
     "autoload": {
         "psr-4": {
             "MyAnimeList\\": "src/MyAnimeList/"
