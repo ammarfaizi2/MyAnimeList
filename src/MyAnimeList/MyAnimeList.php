@@ -12,6 +12,7 @@ if (! defined("MYANIMELIST_PASS")) {
 
 use Curl\Curl;
 use MyAnimeList\MyAnimeListCache;
+use MyAnimeList\MyAnimeListRelation;
 
 /**
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
@@ -21,7 +22,7 @@ use MyAnimeList\MyAnimeListCache;
  */
 class MyAnimeList
 {
-	public function animeSearch($title)
+	public static function animeSearch($title)
 	{
 		$cache = new MyAnimeListCache('anime', $title);
 		if ($cache->isCached()) {
@@ -30,6 +31,29 @@ class MyAnimeList
 			$cache->set($result = self::search('anime', $title));
 			return $result;
 		}
+	}
+
+	public static function mangaSearch($title)
+	{
+		$cache = new MyAnimeListCache('manga', $title);
+		if ($cache->isCached()) {
+			return $cache->get();
+		} else {
+			$cache->set($result = self::search('manga', $title));
+			return $result;
+		}
+	}
+
+	public static function mangaInfo($id)
+	{
+		$relation = new MyAnimeListRelation('manga', $id);
+		return $relation->get();
+	}
+
+	public static function animeInfo($id)
+	{
+		$relation = new MyAnimeListRelation('anime', $id);
+		return $relation->get();
 	}
 
 	private static function search($type, $title)
