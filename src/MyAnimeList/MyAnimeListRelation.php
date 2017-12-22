@@ -63,7 +63,7 @@ class MyAnimeListRelation
 	public function get()
 	{
 		foreach ($this->relations as $key => $val) {
-			if ($search = array_search($this->id, $val)) {
+			if (array_search($this->id, $val) !== false) {
 				$location = $key;
 				break;
 			}
