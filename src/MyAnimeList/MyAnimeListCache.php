@@ -2,6 +2,12 @@
 
 namespace MyAnimeList;
 
+/**
+ * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
+ * @license MIT
+ * @version 0.0.1
+ * @package MyAnimeList
+ */
 class MyAnimeListCache
 {
 	/**
@@ -66,10 +72,10 @@ class MyAnimeListCache
 		is_dir($rootCacheDir) or mkdir($rootCacheDir);
 		is_dir($this->cacheDir) or mkdir($this->cacheDir);
 		if (! is_dir($this->cacheDir)) {
-			throw new Exception("Cannot create directory ".$this->cacheDir, 1);
+			throw new \Exception("Cannot create directory ".$this->cacheDir, 1);
 		}
 		if (! is_writable($this->cacheDir)) {
-			throw new Exception($this->cacheDir. " is not writeable", 1);
+			throw new \Exception($this->cacheDir. " is not writeable", 1);
 		}
 		if (! file_exists($this->mapFile)) {
 			$this->cacheMap = [
